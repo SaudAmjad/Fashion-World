@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion World - Premium Clothing & Watches</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #333;
+            --light-gray: #f8f9fa;
+            --border-color: #e0e0e0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background: #fff;
+        }
+        
+        /* Top Banner */
+        .top-banner {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 14px;
+        }
+        
+        .top-banner span {
+            color: #ffd700;
+            font-weight: 600;
+        }
+        
+        /* Header */
+        .header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 40px;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 45px 12px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 25px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+        
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--secondary-color);
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .header-icons {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .header-icons a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+        
+        .header-icons a:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Navigation */
+        .nav {
+            background: var(--light-gray);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 15px 0;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s;
+        }
+        
+        .nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .sidebar-section {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .sidebar-section ul {
+            list-style: none;
+        }
+        
+        .sidebar-section li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--light-gray);
+            cursor: pointer;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+        
+        .sidebar-section li:last-child {
+            border-bottom: none;
+        }
+        
+        .sidebar-section li:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+        
+        .filter-group {
+            margin-bottom: 15px;
+        }
+        
+        .filter-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        .filter-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        .main-content h2 {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        /* Product Card */
+        .product-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            position: relative;
+            background: var(--light-gray);
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .badge.new {
+            background: #27ae60;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .price-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .old-price {
+            font-size: 16px;
+            color: #999;
+            text-decoration: line-through;
+        }
+        
+        .new-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+        
+        .discount {
+            background: #fff3cd;
+            color: #856404;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .stars {
+            color: #ffc107;
+        }
+        
+        .reviews {
+            color: #666;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background: #2980b9;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 50px 20px 30px;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .footer-section p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary-color);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* Newsletter Popup */
+        .newsletter-popup {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 350px;
+            z-index: 1000;
+            animation: slideUp 0.5s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .newsletter-popup h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .newsletter-popup p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .newsletter-popup input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .newsletter-popup button {
+            width: 100%;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .newsletter-popup button:hover {
+            background: #2980b9;
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #999;
+            cursor: pointer;
+            width: auto;
+            padding: 0;
+        }
+        
+        .close-popup:hover {
+            color: var(--text-color);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                position: static;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                margin: 0;
+                max-width: 100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .newsletter-popup {
+                bottom: 20px;
+                right: 20px;
+                left: 20px;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        Free shipping on orders over Rs. 15000 | <span>Special Sale: Up to 70% Off</span>
+    </div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">Fashion World</a>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products, brands...">
+                <button>Search</button>
+            </div>
+            
+            <div class="header-icons">
+                <a href="#">👤 Account</a>
+                <a href="#">❤️ Wishlist</a>
+                <a href="#">🛒 Cart (0)</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#">New Arrivals</a>
+            <a href="#">Men</a>
+            <a href="#">Women</a>
+            <a href="#">Watches</a>
+            <a href="#">Accessories</a>
+            <a href="#">Sale</a>
+        </div>
+    </nav>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Categories</h3>
+                <ul>
+                    <li>Men's Clothing</li>
+                    <li>Women's Clothing</li>
+                    <li>Luxury Watches</li>
+                    <li>Smart Watches</li>
+                    <li>Accessories</li>
+                    <li>Shoes</li>
+                    <li>Bags</li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Price Range</h3>
+                <div class="filter-group">
+                    <label><input type="checkbox"> Under 500</label>
+                    <label><input type="checkbox"> 500 - 1000</label>
+                    <label><input type="checkbox"> 1000 - 3000</label>
+                    <label><input type="checkbox"> 3000 - 5000</label>
+                    <label><input type="checkbox"> Above 5000</label>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Size</h3>
+                <div class="filter-group">
+                    <label><input type="checkbox"> XS</label>
+                    <label><input type="checkbox"> S</label>
+                    <label><input type="checkbox"> M</label>
+                    <label><input type="checkbox"> L</label>
+                    <label><input type="checkbox"> XL</label>
+                    <label><input type="checkbox"> XXL</label>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <h2>Featured Products</h2>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="badge">Sale</span>
+                        <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=400" alt="Premium Cotton T-Shirt">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Premium Cotton T-Shirt</h3>
+                        <p class="product-description">Comfortable 100% cotton t-shirt with modern fit. Perfect for casual wear.</p>
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="reviews">(128 reviews)</span>
+                        </div>
+                        <div class="price-section">
+                            <span class="old-price">RS. 59.99</span>
+                            <span class="new-price">RS. 29.99</span>
+                            <span class="discount">50% OFF</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="badge new">New</span>
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" alt="Luxury Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Classic Leather Watch</h3>
+                        <p class="product-description">Elegant timepiece with genuine leather strap. Swiss movement.</p>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="reviews">(89 reviews)</span>
+                        </div>
+                        <div class="price-section">
+                            <span class="old-price">RS. 449.99</span>
+                            <span class="new-price">RS. 299.99</span>
+                            <span class="discount">33% OFF</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="badge">Sale</span>
+                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400" alt="Designer Jeans">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Slim Fit Denim Jeans</h3>
+                        <p class="product-description">Premium denim with stretch comfort. Modern slim fit design.</p>
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="reviews">(203 reviews)</span>
+                        </div>
+                        <div class="price-section">
+                            <span class="old-price">RS. 89.99</span>
+                            <span class="new-price">RS. 54.99</span>
+                            <span class="discount">39% OFF</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="badge new">New</span>
+                        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400" alt="Summer Dress">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Elegant Summer Dress</h3>
+                        <p class="product-description">Lightweight fabric perfect for warm weather. Available in multiple colors.</p>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="reviews">(156 reviews)</span>
+                        </div>
+                        <div class="price-section">
+                            <span class="old-price">RS. 79.99</span>
+                            <span class="new-price">RS. 49.99</span>
+                            <span class="discount">38% OFF</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="badge">Sale</span>
+                        <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400" alt="Smart Watch">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Smart Watch Pro</h3>
+                        <p class="product-description">Advanced fitness tracking with heart rate monitor and GPS.</p>
+                        <div class="rating">
+                            <span class="stars">★★★★☆</span>
+                            <span class="reviews">(412 reviews)</span>
+                        </div>
+                        <div class="price-section">
+                            <span class="old-price">RS. 299.99</span>
+                            <span class="new-price">RS. 199.99</span>
+                            <span class="discount">33% OFF</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="badge new">New</span>
+                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400" alt="Leather Jacket">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Premium Leather Jacket</h3>
+                        <p class="product-description">Genuine leather with quilted lining. Classic bomber style.</p>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="reviews">(98 reviews)</span>
+                        </div>
+                        <div class="price-section">
+                            <span class="old-price">RS. 399.99</span>
+                            <span class="new-price">RS. 249.99</span>
+                            <span class="discount">38% OFF</span>
+                        </div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Newsletter Popup -->
+    <div class="newsletter-popup" id="newsletter">
+        <button class="close-popup" onclick="document.getElementById('newsletter').style.display='none'">×</button>
+        <h3>Get 15% Off</h3>
+        <p>Subscribe to our newsletter and receive exclusive offers!</p>
+        <input type="email" placeholder="Enter your email">
+        <button>Subscribe</button>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Fashion World</h4>
+                <p>Your premier destination for quality clothing and luxury watches. We offer authentic products with fast shipping worldwide.</p>
+                <div class="social-links">
+                    <a href="#">FB</a>
+                    <a href="#">IG</a>
+                    <a href="#">TW</a>
+                    <a href="#">YT</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Order Tracking</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Gift Cards</a></li>
+                    <li><a href="#">Store Locator</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <p>Email: muhammadsaud@gmail.com</p>
+                <p>Phone: +92 3051301799</p>
+                <p>Mon-Fri: 9AM - 6PM </p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 Fashion World. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+</body>
+</html>
